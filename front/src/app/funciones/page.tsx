@@ -1,14 +1,18 @@
 // ✅ Función para obtener las funciones desde el backend
 async function obtenerFunciones() {
-  const res = await fetch("http://localhost:4000/api/funciones", {
+  // ✅ Usar URL absoluta para evitar errores en SSR
+  const baseUrl = process.env.NEXT_PUBLIC_URL ?? "";
+  const res = await fetch(`${baseUrl}/api/funciones`, {
     cache: "no-store",
   });
 
+  // ✅ Manejo de errores si la API falla
   if (!res.ok) {
     console.error("Error al obtener las funciones");
     return [];
   }
 
+  // ✅ Devolver el JSON con las funciones
   return res.json();
 }
 

@@ -1,5 +1,5 @@
 async function obtenerElenco() {
-  const res = await fetch("http://localhost:4000/api/elenco", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/elenco`, {
     cache: "no-store",
   });
 
@@ -16,7 +16,6 @@ export default async function ElencoPage() {
 
   return (
     <main className="container py-5 text-center">
-
       <h1 className="titulo-obra mb-5">Elenco</h1>
       <h2 className="subtitulo mb-4">Actuación y Cuerpo en Escena</h2>
 
@@ -32,7 +31,6 @@ export default async function ElencoPage() {
             </div>
           ))}
       </div>
-
     </main>
   );
 }

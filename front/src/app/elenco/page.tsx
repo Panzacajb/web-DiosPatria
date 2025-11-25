@@ -1,9 +1,12 @@
+// ✅ Revalidar cada 1 hora
+export const revalidate = 3600;
+
 // ✅ Función para obtener el elenco desde la API interna
 async function obtenerElenco() {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
     const res = await fetch(`${baseUrl}/api/elenco`, {
-      cache: "no-store",
+      next: { revalidate: 3600 }, // ISR: Revalidate cada 1 hora
     });
 
     if (!res.ok) {

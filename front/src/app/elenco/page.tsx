@@ -1,14 +1,21 @@
+// ✅ Función para obtener el elenco desde la API interna
 async function obtenerElenco() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/elenco`, {
-    cache: "no-store",
-  });
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+    const res = await fetch(`${baseUrl}/api/elenco`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    console.error("Error al obtener el elenco");
+    if (!res.ok) {
+      console.error("Error al obtener el elenco:", res.status);
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error al obtener el elenco:", error);
     return [];
   }
-
-  return res.json();
 }
 
 export default async function ElencoPage() {

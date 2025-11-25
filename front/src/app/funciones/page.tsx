@@ -1,19 +1,21 @@
-// ✅ Función para obtener las funciones desde el backend
+// ✅ Función para obtener las funciones desde la API interna
 async function obtenerFunciones() {
-  // ✅ Usar URL absoluta para evitar errores en SSR
-  const baseUrl = process.env.NEXT_PUBLIC_URL ?? "";
-  const res = await fetch(`${baseUrl}/api/funciones`, {
-    cache: "no-store",
-  });
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+    const res = await fetch(`${baseUrl}/api/funciones`, {
+      cache: "no-store",
+    });
 
-  // ✅ Manejo de errores si la API falla
-  if (!res.ok) {
-    console.error("Error al obtener las funciones");
+    if (!res.ok) {
+      console.error("Error al obtener las funciones:", res.status);
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error al obtener las funciones:", error);
     return [];
   }
-
-  // ✅ Devolver el JSON con las funciones
-  return res.json();
 }
 
 // ✅ Página principal de funciones con estética teatral
@@ -35,10 +37,10 @@ export default async function FuncionesPage() {
           funciones.map((funcion, index) => (
             <div key={index} className="col-12 col-md-4 mb-4">
 
-              {/* ✅ Tarjeta teatral (idéntica a actor-card) */}
+              {/* ✅ Tarjeta teatral */}
               <div className="funcion-card">
 
-                {/* ✅ Imagen con borde grueso y filtro teatral */}
+                {/* ✅ Imagen */}
                 {funcion.imagen && (
                   <img
                     src={funcion.imagen}
@@ -46,18 +48,18 @@ export default async function FuncionesPage() {
                   />
                 )}
 
-                {/* ✅ Título con tipografía Anton */}
+                {/* ✅ Título */}
                 <h3>{funcion.titulo}</h3>
 
                 {/* ✅ Descripción */}
                 <p>{funcion.descripcion}</p>
 
-                {/* ✅ Fecha y hora con estilo destacado */}
+                {/* ✅ Fecha y hora */}
                 <p className="funcion-fecha">
                   {funcion.fecha} — {funcion.hora}
                 </p>
 
-                {/* ✅ Botón teatral (no Bootstrap genérico) */}
+                {/* ✅ Botón teatral */}
                 <a
                   href={funcion.linkEntradas || "#"}
                   className="btn-funcion"

@@ -1,42 +1,66 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
-html,
+
+/* ============================
+   ESTILO GROTESCO CRIOLLO
+   ============================ */
+
+/* Fondo general */
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  background-color: #EFE76F;
+  color: #203F49;
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.5;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Título principal estilo grotesco criollo */
+.titulo-obra {
+  font-family: 'Anton', sans-serif;
+  color: #D61E1E;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 3.2rem;
+  text-shadow: 2px 2px 0px #00000033; /* toque teatral */
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Subtítulos */
+.subtitulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #203F49;
 }
 
+/* Párrafos */
+p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+/* Enlaces */
 a {
-  color: inherit;
-  text-decoration: none;
+  color: #203F49;
+  font-weight: 600;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover {
+  color: #D61E1E;
+}
+
+/* Caja de información */
+.info-box {
+  background-color: #fff8a6;
+  border: 2px solid #203F49;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px #203F49;
+}
+
+.flyer {
+  max-width: 800px;   /* Cambiá este valor a tu gusto */
+  width: 100%;
+  height: auto;
+  margin: 0 auto;     /* Centra la imagen */
+  display: block;
 }

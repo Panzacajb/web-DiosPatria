@@ -17,26 +17,18 @@ export default async function ElencoPage() {
   return (
     <main className="container py-5 text-center">
 
-      {/* ✅ Título principal */}
       <h1 className="titulo-obra mb-5">Elenco</h1>
-
-      {/* ✅ Subtítulo */}
       <h2 className="subtitulo mb-4">Actuación y Cuerpo en Escena</h2>
 
-      {/* ✅ Grid de actores */}
       <div className="row justify-content-center">
         {Array.isArray(elenco) &&
           elenco.map((actor, index) => (
             <div key={index} className="col-6 col-md-3 mb-4">
-              <img
-                src={actor.imagen}
-                alt={actor.nombre}
-                className="img-fluid rounded shadow"
-              />
-              <h4 className="mt-3" style={{ fontWeight: 600 }}>
-                {actor.nombre}
-              </h4>
-              <p style={{ fontSize: "1rem" }}>{actor.descripcion}</p>
+              <div className="actor-card">
+                <img src={actor.imagen} alt={actor.nombre} />
+                <h4>{actor.nombre}</h4>
+                <p>{actor.descripcion}</p>
+              </div>
             </div>
           ))}
       </div>
@@ -44,3 +36,4 @@ export default async function ElencoPage() {
     </main>
   );
 }
+

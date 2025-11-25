@@ -1,0 +1,52 @@
+# 🎭 web-DiosPatria  
+Sitio web oficial para la obra teatral **Dios Patria**, desarrollado con una arquitectura moderna y escalable.  
+El proyecto combina una estética inspirada en el **Grotesco Criollo** con un backend dinámico para gestionar elenco, funciones y contenido actualizado.
+
+---
+
+## 🚀 Tecnologías utilizadas
+
+### Frontend
+- TypeScript  
+- HTML5 + CSS3  
+- Bootstrap (o sistema propio de componentes)  
+- Vite / Next.js (según configuración final)
+
+### Backend
+- Node.js + Express  
+- TypeScript  
+- MongoDB Atlas + Mongoose  
+
+---
+
+## 📁 Estructura del proyecto
+
+
+---
+
+## 🧩 Funcionalidades principales
+
+- Página de inicio con estética teatral.  
+- Sección de elenco con datos dinámicos desde la API.  
+- Calendario de funciones administrado desde MongoDB.  
+- Botón de WhatsApp para reservas.  
+- Mapa interactivo con ubicación del teatro.  
+- Diseño responsive y optimizado.
+
+---
+
+## 🔌 API (resumen)
+
+| Endpoint | Método | Descripción |
+|---------|--------|-------------|
+| `/api/elenco` | GET | Obtiene la lista de actores |
+| `/api/funciones` | GET | Obtiene fechas y horarios |
+| `/api/obra` | GET | Información general de la obra |
+
+---
+
+## 🛠 Instalación y uso
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/Panzacajb/web-DiosPatria.git

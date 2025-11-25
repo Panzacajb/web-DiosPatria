@@ -24,6 +24,11 @@ export default function Navbar() {
             Elenco
           </Link>
         </li>
+        <li className="nav-item">
+          <Link href="/funciones" className="nav-link">
+            Funciones
+          </Link>
+        </li>
 
       </div>
     </nav>

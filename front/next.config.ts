@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   // ✅ Mejoras para despliegue en Vercel
   reactCompiler: true,
   reactStrictMode: true,
-  swcMinify: true,
   poweredByHeader: false,
   // Habilitar formatos modernos para optimización de imágenes al build
   images: {

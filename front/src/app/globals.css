@@ -36,6 +36,8 @@ body {
   color: var(--color-accent);
   letter-spacing: 2px;
   text-transform: uppercase;
+  /* ✅ Centrar el título principal para estética de afiche teatral */
+  text-align: center;
   font-size: clamp(2.8rem, 6vw, 4.2rem);
   text-shadow:
     3px 3px 0px rgba(0,0,0,0.35),
@@ -52,14 +54,23 @@ body {
   color: var(--color-text);
   max-width: 800px;
   margin: 0 auto 2rem;
+  /* ✅ Centrar subtítulos para jerarquía visual clara */
+  text-align: center;
 }
 
 
 /* Párrafos */
+/* ✅ Justificar párrafos y limitar ancho para mejor legibilidad */
 p {
   font-size: 1.15rem;
   margin-bottom: 1rem;
   color: var(--color-text);
+  line-height: 1.6;
+  text-align: justify; /* Justifica los párrafos tipo afiche */
+  text-justify: inter-word;
+  max-width: 70ch; /* ancho óptimo para lectura */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -88,6 +99,22 @@ a:hover {
   position: relative;
 }
 
+/* ✅ Variante centrada del info-box (usa inline max-width o clases auxiliares) */
+.info-box--center {
+  text-align: center;
+}
+
+/* ✅ Forzar centrado de todos los textos e hijos comunes dentro del info-box centrado */
+.info-box--center p,
+.info-box--center a,
+.info-box--center li {
+  text-align: center;
+}
+
+.info-box--center a {
+  display: inline-block; /* evita que los enlaces de bloque ocupen todo el ancho */
+}
+
 .info-box::after {
   content: "";
   position: absolute;
@@ -109,11 +136,18 @@ a:hover {
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: var(--shadow-hard);
+  /* ✅ Centrar botón de WhatsApp dentro de su contenedor */
+  display: inline-block;
+  text-align: center;
 }
 
 .btn-whatsapp:hover {
   background-color: #145214 !important;
 }
+
+/* ============================
+   TARJETAS DE ELENCO
+   ============================ */
 
 .actor-card {
   background: var(--color-paper);
@@ -122,6 +156,59 @@ a:hover {
   padding: 1rem;
   box-shadow: var(--shadow-card);
   transition: transform 0.15s ease-out;
+  /* ✅ Alinear contenido de la tarjeta al centro para cohesión visual */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================
+   Tarjeta horizontal para primer actor (director)
+   - imagen a la izquierda, texto a la derecha
+   - mantiene estética teatral y mejora lectura de descripciones largas
+   ============================ */
+
+.actor-card--horizontal {
+  flex-direction: row;
+  /* ✅ Centrar verticalmente la imagen respecto al texto */
+  align-items: center;
+  gap: 0rem;
+  padding: 1.5rem;
+}
+
+.actor-card--horizontal .card-img {
+  max-width: 200px; /* imagen más compacta en horizontal */
+  margin: 0;
+  flex: 0 0 auto; /* evita que la imagen crezca */
+}
+
+/* Contenedor del texto: ocupa todo el espacio restante hasta el borde derecho */
+.actor-card--horizontal > div {
+  flex: 1 1 auto;
+  min-width: 0; /* permite que el contenido se contraiga dentro del flex */
+}
+
+/* Descripción dentro de tarjeta horizontal: alineada a la izquierda y sin limitar ancho */
+.actor-desc {
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .actor-card--horizontal {
+    flex-direction: column; /* volver a vertical en pantallas pequeñas */
+    align-items: center;
+  }
+  .actor-card--horizontal .card-img {
+    max-width: 220px;
+  }
+  .actor-desc {
+    text-align: center; /* en móvil, centrar para consistencia con el resto */
+    max-width: 60ch;
+  }
 }
 
 .actor-card:hover {
@@ -130,8 +217,13 @@ a:hover {
 
 .actor-card img {
   width: 100%;
+  max-width: 240px; /* ✅ limitar tamaño para mantener proporción */
+  height: auto;
   border: 3px solid var(--color-text);
   filter: contrast(1.1) saturate(1.1);
+  display: block;
+  margin: 0.5rem auto;
+  object-fit: cover;
 }
 
 .actor-card h4 {
@@ -139,12 +231,19 @@ a:hover {
   color: var(--color-accent);
   margin-top: 1rem;
   letter-spacing: 1px;
+  /* ✅ Centrar nombre del actor */
+  text-align: center;
 }
 
 .actor-card p {
   font-size: 1rem;
   color: var(--color-text);
+  /* ✅ Justificar descripción del actor y limitar ancho */
+  text-align: justify;
+  max-width: 36ch;
+  margin: 0.6rem auto 0;
 }
+
 
 
 .flyer {
@@ -178,7 +277,7 @@ a:hover {
 
 .navbar-teatro .nav-link {
   font-family: var(--font-body);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #fff8a6 !important;
   margin-left: 1rem;
   text-decoration: none;
@@ -213,7 +312,11 @@ a:hover {
   height: 100%;
   display: flex;
   flex-direction: column;
+  /* ✅ Centrar contenido de la tarjeta de función */
+  align-items: center;
   transition: transform 0.15s ease-out;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .funcion-card:hover {
@@ -222,9 +325,14 @@ a:hover {
 
 .funcion-card img {
   width: 100%;
+  max-width: 420px; /* ✅ limitar ancho para consistencia con layout */
+  height: auto;
   border: 3px solid var(--color-text);
   margin-bottom: 1rem;
   filter: contrast(1.1) saturate(1.1);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .funcion-card h3 {
@@ -232,15 +340,21 @@ a:hover {
   color: var(--color-accent);
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
+  /* ✅ Centrar título de la función */
+  text-align: center;
 }
 
 .funcion-card p {
   color: var(--color-text);
   font-size: 1rem;
+  /* ✅ Justificar descripción de la función */
+  text-align: justify;
+  max-width: 44ch;
+  margin: 0.5rem auto;
 }
 
 .funcion-fecha {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 700;
   margin-top: 0.5rem;
 }
@@ -256,6 +370,175 @@ a:hover {
   margin-top: auto;
   padding: 0.6rem 1rem;
   box-shadow: var(--shadow-hard);
+  /* ✅ Asegurar que el botón se centre dentro de la tarjeta */
+  align-self: center;
+}
+
+/* ============================
+   UTILIDADES PARA CENTRADO Y JUSTIFICADO
+   Agregadas para forzar centrado de imágenes/botones y justificar textos.
+   ✅ Comentarios dejan claro dónde se aplican estos estilos
+   ============================ */
+
+/* Imagen usada en tarjetas (actor/funcion) */
+.card-img {
+  width: 100%;
+  max-width: 360px; /* ✅ ajuste fino: tamaño más equilibrado en desktop */
+  height: auto;
+  border: 3px solid var(--color-text);
+  filter: contrast(1.05) saturate(1.05);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+/* ============================
+   Ajustes específicos para la primera y segunda función
+   ✅ Reducir tamaño de imágenes de la función inaugural y la segunda función
+   ✅ Aumentar separación entre tarjetas
+   ============================ */
+
+.funciones-row {
+  gap: 1.5rem; /* separación entre columnas */
+}
+
+.funcion-principal .card-img {
+  max-width: 300px; /* ✅ igualado a la segunda función para consistencia visual */
+}
+
+.funcion-secundaria .card-img {
+  max-width: 300px; /* imagen algo más grande que la inaugural, pero contenida */
+}
+
+.funcion-principal,
+.funcion-secundaria {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+@media (max-width: 576px) {
+  .funcion-principal .card-img,
+  .funcion-secundaria .card-img {
+    max-width: 200px; /* más pequeñas en móviles */
+  }
+  .funciones-row {
+    gap: 1rem;
+  }
+}
+
+/* Texto justificado para descripciones más legibles */
+.texto-justificado {
+  text-align: justify;
+  text-justify: inter-word;
+  max-width: 70ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+/* Centrar botones dentro de contenedores flex o bloques */
+.btn-center {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-funcion,
+.btn-whatsapp {
+  border-radius: 6px; /* toque más suave sin perder estética */
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.btn-funcion:focus,
+.btn-whatsapp:focus {
+  outline: 3px solid rgba(255,248,166,0.35);
+  outline-offset: 3px;
+}
+
+/* ============================
+   MEDIA QUERIES RESPONSIVE
+   Ajustes para tablets y móviles: tamaños, anchos y comportamiento de botones/imágenes
+   ✅ Mantiene la estética grotesco criolla y mejora legibilidad en pantallas pequeñas
+   ============================ */
+
+/* Tablets (<= 992px) */
+@media (max-width: 992px) {
+  .titulo-obra {
+    font-size: clamp(2.2rem, 6.5vw, 3.6rem);
+  }
+
+  .subtitulo {
+    font-size: 1.45rem;
+    max-width: 60ch;
+  }
+
+  .card-img {
+    max-width: 360px;
+  }
+
+  .texto-justificado {
+    max-width: 64ch;
+  }
+
+  .flyer {
+    max-width: 720px;
+  }
+}
+
+/* Móviles (<= 576px) */
+@media (max-width: 576px) {
+  body {
+    font-size: 0.98rem;
+  }
+
+  .titulo-obra {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+    letter-spacing: 1px;
+  }
+
+  .subtitulo {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    max-width: 48ch;
+  }
+
+  /* Las tarjetas deben apilarse y las imágenes reducirse */
+  .actor-card,
+  .funcion-card {
+    padding: 0.9rem;
+  }
+
+  .card-img {
+    max-width: 220px; /* imágenes más pequeñas en móviles */
+  }
+
+  .texto-justificado {
+    max-width: 40ch;
+    padding: 0 0.5rem;
+  }
+
+  /* Botones a 100% ancho encima de cierta anchura para facilidad de toque */
+  .btn-center {
+    display: block;
+    width: calc(100% - 2rem);
+    max-width: 360px;
+    margin: 0.6rem auto 0;
+    text-align: center;
+  }
+
+  .btn-whatsapp,
+  .btn-funcion {
+    padding: 0.8rem 1rem;
+  }
+
+  .flyer {
+    margin: 1.2rem auto;
+  }
 }
 
 .btn-funcion:hover {
@@ -281,6 +564,11 @@ a:hover {
 .footer-teatro,
 .footer-teatro * {
   color: #fff8a6 !important; /* Amarillo afiche */
+}
+
+/* ✅ Centrar todo el contenido del footer para alineación media */
+.footer-teatro {
+  text-align: center;
 }
 
 /* Ornamento superior */
@@ -309,6 +597,11 @@ a:hover {
   margin-bottom: 0.3rem;
 }
 
+/* ✅ Asegurar texto centrado en footer */
+.footer-text {
+  text-align: center;
+}
+
 /* Enlaces */
 .footer-link {
   text-decoration: underline;
@@ -328,3 +621,16 @@ a:hover {
   font-size: 1rem;
   text-shadow: 2px 2px 0 rgba(0,0,0,0.4);
 }
+
+/* ============================
+   UTILIDAD: lead centrado para descripciones principales
+   ✅ Se usa en `ObraCard.tsx` para centrar la sinopsis de la obra
+   ============================ */
+.lead-centrado {
+  text-align: center;
+  max-width: 70ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+

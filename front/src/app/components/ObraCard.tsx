@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ObraHero() {
   return (
     <section className="container py-5 text-center">
@@ -35,15 +37,10 @@ export default function ObraHero() {
         </a>
       </div>
 
-        {/* ✅ Botón de compra (añadida clase `.btn-center` para asegurar centrado) */}
-        <a
-          href="https://wa.me/5492995533683?text=Hola..."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-whatsapp mt-4 btn-center"
-        >
+        {/* ✅ Botón de compra: ahora enlaza a la página interna `/funciones` (navegación interna) */}
+        <Link href="/funciones" className="btn btn-whatsapp mt-4 btn-center">
           Comprar entradas
-        </a>
+        </Link>
 
     </section>
   );

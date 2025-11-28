@@ -1,12 +1,12 @@
 // ✅ Revalidar cada 1 hora
-export const revalidate = 60;
+export const revalidate = 3600;
 
 // ✅ Función para obtener las funciones desde la API interna
 async function obtenerFunciones() {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
     const res = await fetch(`${baseUrl}/api/funciones`, {
-      next: { revalidate: 60 }, // ISR: Revalidate cada 1 hora
+      next: { revalidate: 3600 }, // ISR: Revalidate cada 1 hora
     });
 
     if (!res.ok) {

@@ -374,6 +374,12 @@ a:hover {
   align-self: center;
 }
 
+/* ✅ Hacer el texto del botón de funciones menos grueso para mejor legibilidad */
+.funcion-card .btn-funcion {
+  font-weight: 500; /* menos bold */
+  letter-spacing: 0.6px; /* un poco menos separación para acompañar menor grosor */
+}
+
 /* ============================
    UTILIDADES PARA CENTRADO Y JUSTIFICADO
    Agregadas para forzar centrado de imágenes/botones y justificar textos.
@@ -493,51 +499,106 @@ a:hover {
 /* Móviles (<= 576px) */
 @media (max-width: 576px) {
   body {
-    font-size: 0.98rem;
+    font-size: 0.9rem;
   }
 
   .titulo-obra {
-    font-size: clamp(1.8rem, 8vw, 2.8rem);
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
     letter-spacing: 1px;
   }
 
   .subtitulo {
-    font-size: 1.2rem;
-    padding: 0 1rem;
-    max-width: 48ch;
+    font-size: 1.1rem;
+    padding: 0 0.75rem;
+    max-width: 45ch;
   }
 
-  /* Las tarjetas deben apilarse y las imágenes reducirse */
+  p {
+    font-size: 1rem;
+  }
+
+  /* ✅ Tarjetas más compactas en móviles: padding y altura reducida */
   .actor-card,
   .funcion-card {
-    padding: 0.9rem;
+    padding: 0.7rem;
+  }
+
+  .actor-card h4 {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .actor-card p,
+  .funcion-card p {
+    font-size: 0.95rem;
   }
 
   .card-img {
-    max-width: 220px; /* imágenes más pequeñas en móviles */
+    max-width: 180px; /* ✅ imágenes aún más pequeñas en móviles */
   }
 
   .texto-justificado {
-    max-width: 40ch;
+    max-width: 38ch;
     padding: 0 0.5rem;
+    font-size: 0.95rem;
   }
 
   /* Botones a 100% ancho encima de cierta anchura para facilidad de toque */
   .btn-center {
     display: block;
-    width: calc(100% - 2rem);
-    max-width: 360px;
-    margin: 0.6rem auto 0;
+    width: calc(100% - 1.4rem);
+    max-width: 320px;
+    margin: 0.5rem auto 0;
     text-align: center;
   }
 
   .btn-whatsapp,
   .btn-funcion {
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
   }
 
   .flyer {
-    margin: 1.2rem auto;
+    margin: 1rem auto;
+  }
+
+  /* ✅ Ajustes para tarjeta horizontal en móviles */
+  .actor-card--horizontal .card-img {
+    max-width: 160px;
+  }
+
+  .actor-card--horizontal > div {
+    padding-left: 0.15rem;
+    padding-right: 0.2rem;
+  }
+
+  /* ============================
+     Reducir tamaño de las cartas DESPUÉS del primer actor en móvil
+     Selecciona `.actor-card` que NO sean `.actor-card--horizontal` (primer actor)
+     y aplica compactación visual para mejorar lectura en celulares.
+     ============================ */
+  .actor-card:not(.actor-card--horizontal) {
+    padding: 0.45rem;
+  }
+
+  .actor-card:not(.actor-card--horizontal) .card-img {
+    max-width: 140px;
+  }
+
+  .actor-card:not(.actor-card--horizontal) h4 {
+    font-size: 0.95rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .actor-card:not(.actor-card--horizontal) p {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .actor-card:not(.actor-card--horizontal) .texto-justificado {
+    max-width: 34ch;
+    padding: 0 0.25rem;
   }
 }
 
